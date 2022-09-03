@@ -29,7 +29,6 @@ const displayStories = (stories) => {
                                 <img src="${story.author.img}" class="img-fluid rounded rounded-circle" alt="..." width="60">
                             </div>
                             <div class="p-0 m-0 g-0">
-                            // Notification if particular information is not found
                                 <p class="ps-3"><small>${story.author.name ? story.author.name : 'No author name found'} <br>
                                         ${story.author.published_date ? story.author.published_date : 'No publication date found'}</small></p>
                             </div>
@@ -44,7 +43,7 @@ const displayStories = (stories) => {
                                 
                         </div>
                         <div>
-                            <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#NewsModal">Read More...</button>
+                            <button onclick="loadStoryDetails('${story._id}')" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#NewsModal">Read More...</button>
                         </div>
                     </div>
                 </div>
@@ -94,7 +93,6 @@ const loadCategoryWiseStoryDetails = (category_id) => {
 
 // displaying categorywise details
 const displayCategoryWiseStoryDetails = async (storyCategories) => {
-    console.log(storyCategories);
     const storiesContainer = document.getElementById('categorywiseStories');
     storiesContainer.innerText = '';
     for (const storyCategory of storyCategories) {
@@ -130,7 +128,7 @@ const displayCategoryWiseStoryDetails = async (storyCategories) => {
                                 
                         </div>
                         <div>
-                            <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#NewsModal">Read More...</button>
+                            <button onclick="loadStoryDetails('${storyCategory._id}')" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#NewsModal">Read More...</button>
                         </div>
                     </div>
                 </div>
@@ -140,18 +138,40 @@ const displayCategoryWiseStoryDetails = async (storyCategories) => {
     }
 }
 
-
-const showModal = (description, image) => {
-    // console.log(description, image)
-    const modalBody = document.getElementById("modal-body");
-    modalBody.textContent = "";
-    modalBody.innerHTML = `
-            < p class="py-4" >
-                ${description}
-    </p >
-    <img src="${image}" />
-`
+const loadStoryDetails = async (news_id) => {
+    const url = `https://openapi.programming-hero.com/api/news/${news_id}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    displayStoryDetails(data.data);
+    // displayStoryDetails(data.data);
 }
+
+const displayStoryDetails = story => {
+    const modalTitle = document.getElementById('NewsModalLabel');
+    modalTitle.innerText = story[0].title;
+    const storyDetails = document.getElementById('story-details');
+    storyDetails.innerHTML = `
+    <p>${story[0].author.name ? story[0].author.name : 'No author name found'} <br>
+    ${story[0].author.published_date ? story[0].author.published_date : 'No publication date author name found'} </p>
+    <img src="${story[0].thumbnail_url}" class="img-fluid rounded-start"} img>
+    <p>Total View: ${story[0].total_view} <br> Rating:${story[0].rating.number} </p>
+
+    <p>News Details: <br> ${story[0].details ? story[0].details : 'Photo news'}</p>
+    `
+    // ? er porer ongso turnary operation
+}
+
+// const showModal = (description, image) => {
+//     // console.log(description, image)
+//     const modalBody = document.getElementById("modal-body");
+//     modalBody.textContent = "";
+//     modalBody.innerHTML = `
+//             < p class="py-4" >
+//                 ${description}
+//     </p >
+//     <img src="${image}" />
+// `
+// }
 
 // const displayCategoryWiseDetails = () => {
 //     // console.log(category_id);
