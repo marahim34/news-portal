@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BBC - Blog</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+
+<body>
+    <header>
+        <div>
+            <nav class="navbar navbar-expand-lg navbar-dark bg-bbc">
+                <div class="container-fluid">
+                    <a class="navbar-brand" href="#">
+                        <img src="images/BBC_logo.png" alt="" class="img-fluid" width="120" height="40">
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse me-5" id="navbarTogglerDemo02">
+                    <ul class="navbar-nav mb-2 mb-lg-0 me-5">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="index.html">News</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Blog</a>
+                        </li>
+                    </ul>
+                    <a class="navbar-brand" href="#">
+                        <img src="images/user.png" alt="" class="img-fluid" width="70">
+                    </a>
+                </div>
+            </nav>
+        </div>
+        <div class="d-flex justify-content-between align-items-center me-3 ms-3 mt-3">
+            <div>
+                <h3>Welcome to BBC.com</h3>
+            </div>
+            <div>
+
+                <marquee>We have 25,033 bloggers! Want to start blogging with US! You are almost there!</marquee>
+            </div>
+            <div>
+                <a href=""><button class="btn bg-bbc">Sign Up</button></a>
+            </div>
+            <div id="current-date">
+
+            </div>
+        </div>
+    </header>
+    <main class="container">
+        <section>
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Understanding the difference between Var, Let, and Const in
+                                JavaScript
+                            </h5>
+                            <h6>Blog By: Ayush Tibra</h6>
+                            <p>Date: Sep 03, 2021</p>
+                            <p class="card-text">At the beginning of JavaScript, there is only one way to declare a
+                                variable and that is using the var keyword. With ES6, two new ways to define
+                                variables
+                                were introduced with let and const. Now, all the major browsers are compatible with
+                                the
+                                let and const keywords, and most of the developers are using let and const nowadays.
+
+                                The question is, what makes them different from var, which we were using initially?
+                                what’s the big idea? Why there are three different ways to define a variable?
+                                Let's have a look at the differences between all three scopes of JS:
+                                <br>
+                            <ul>
+                                <li>While var and let can be re-declared without being initialized but const should
+                                    be
+                                    initialized during declaration.</li>
+                                <li>They all are hoisted at the top but with var, it is initialized with a default
+                                    value, unlike let and const are not initialized.</li>
+                                <li>For scoping and re-declaration see the below table for better clarity</li>
+                            </ul>
+                            <img src="images/major-differences-scopes.png" alt="">
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">The Difference Between Regular Functions and Arrow Functions</h5>
+                            <h6>Blog By: Ashutosh Verma</h6>
+                            <p>Date: Sep 03, 2022</p>
+                            <p class="card-text">Arrow function — also called fat arrow function— is a new feature
+                                introduced in ES6 that is a more concise syntax for writing function expressions. While
+                                both regular JavaScript functions and arrow functions work in a similar manner, there
+                                are certain differences between them.
+                                <br>
+                                <br>
+                                Those functions have differences in the following broader areas:
+                                <br>
+                            <ul>
+                                <li>Syntax: A programmer can get the same result as regular functions by writing a few
+                                    lines of code using arrow functions.
+                                    Curly brackets are not required if only one expression is present.</li>
+                                <li>Arguments binding: Arguments binding
+                                    arguments object inside the regular functions contains the list of arguments.
+                                    The arrow function, on the opposite, doesn’t define arguments i.e. they do not have
+                                    arguments binding.</li>
+                                <li>Use of this keyword: Use of this keyword
+                                    Inside of a regular JavaScript function, this value is dynamic. The dynamic context
+                                    means that the value of this depends on how the function is invoked.
+                                    The behavior of this inside of an arrow, function differs considerably from the
+                                    regular function’s this behavior as an arrow function does not have its own “this”
+                                    keyword.
+                                    The value of this inside an arrow function remains the same throughout the lifecycle
+                                    of the function and is always bound to the value of this in the closest non-arrow
+                                    parent function which means No matter how or where being executed, this value inside
+                                    of an arrow function always equals this value from the outer function.</li>
+                                <li>Using a new keyword: Using a new keyword
+                                    Regular functions are constructible and callable. They can be called using the new
+                                    keyword.
+                                    But, the arrow functions are only callable and not constructible, i.e., arrow
+                                    functions can never be used as constructor functions.</li>
+                            </ul>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card h-300">
+                        <div class="card-body">
+                            <h5 class="card-title">When to Use forEach(), map(), filter(), find(), and reduce() on
+                                JavaScript Arrays</h5>
+                            <h6>Blog By: Aryan Islam</h6>
+                            <p>Date: Sep 03, 2022</p>
+                            <p class="card-text">Array functions are something that can help you with any type of
+                                manipulation or looping through an array of items in JavaScript. Some of the pre-built
+                                functions can have very similar use cases to one another, therefore I have created a
+                                list of manipulation functions, with how they look and their use cases.
+                                <br>
+                                <strong>.forEach()</strong>
+                                Function .forEach() is another form of just a plain for loop that can be used to iterate
+                                through array items. This case of a function is used for more complex arrays, for
+                                example, an array of objects with a lot of entries than just an array of integers.
+                                This function takes 1 parameter .forEach(callback). The parameter callback can take up
+                                to 3 parameters element, index & array (but only the element parameter is required, the
+                                rest is optional).
+                                The parameter element will be used as a variable that stores the current element in the
+                                array. Parameter index refers to the element's index in the array and the parameter
+                                array points to the array that it was called on.
+                                <br>
+                                <strong>.map()</strong>
+                                Function .map() is a manipulative function that can modify each element’s content in an
+                                array that it is called on. This function returns a new array with modified values, the
+                                array that it is called on will stay still. This function is useful for adding a little
+                                change to an already existing array, for example adding a property to an object or
+                                modifying it. Its construction and use are identical to the previous function .forEach()
+                                and both can be used interchangeably.
+                                Just like the function .forEach(), this function also takes only 1 parameter
+                                .map(callback). The parameter callback can take up to 3 parameters element, index &
+                                array (but only the element parameter is required, the rest is optional).
+                                <br>
+                                <strong>.filter()</strong>
+                                Function .filter() is a search function that returns all the elements that fulfil the
+                                assigned condition. You can search by simple terms, for example, that element is equal
+                                to a certain integer, or by more advanced terms, for example, searching for an object
+                                with certain property that is equal to something. Both examples have a very frequent use
+                                as a developer.
+                                This function returns an array of found results, if any, even if only 1 match is found.
+                                If a function does not find any match, it simply returns an empty array.
+                                Just like the function .forEach(), this function also takes only 1 parameter
+                                .filter(callback). The parameter callback can take up to 3 parameters element, index &
+                                array (but only the element parameter is required, the rest is optional).
+                                <br>
+                                <strong>.find()</strong>
+                                Function .find() is also a search function like the previous but they differ in one
+                                small detail — this function returns only one match in an array. If in an array is more
+                                than one result, the function will return the first that has matched.
+                                Just like the function .forEach(), this function also takes only 1 parameter
+                                .find(callback). The parameter callback can take up to 3 parameters element, index &
+                                array (but only the element parameter is required, the rest is optional).
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Template Strings in JavaScript
+                            </h5>
+                            <h6>Blog By: John Au-Yeung</h6>
+                            <p>Date: Sep 03, 2022</p>
+                            <p class="card-text">Template strings, also known as template literals are literals
+                                delimited with backtick (`) characters, allowing for multi-line strings, for string
+                                interpolation with embedded expressions, and for special constructs called tagged
+                                templates.
+
+                                Template literals are sometimes informally called template strings, because they are
+                                used most commonly for string interpolation (to create strings by doing substitution of
+                                placeholders). However, a tagged template literal may not result in a string; it can be
+                                used with a custom tag function to perform whatever operations you want on the different
+                                parts of the template literal.
+                                <br>
+                                Template literals can do everything that regular strings can, so you could possibly
+                                replace all strings in your project with them and have the same functionality. However,
+                                the most common convention in codebases is to only use template literals when using the
+                                additional capabilities of template literals, and consistently using the single or
+                                double quotes for all other simple strings. Following this standard will make your code
+                                easier to read if examined by another developer.
+
+                                Now that you’ve seen how to declare strings with single quotes, double quotes, and
+                                backticks, you can move on to the first advantage of template literals: writing
+                                multi-line strings.
+
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
+    <script src=" js/date.js">
+    </script>
+    <script src="js/bbc.js"></script>
+</body>
+
+</html>

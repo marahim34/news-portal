@@ -138,14 +138,15 @@ const displayCategoryWiseStoryDetails = async (storyCategories) => {
     }
 }
 
+// loading story details
 const loadStoryDetails = async (news_id) => {
     const url = `https://openapi.programming-hero.com/api/news/${news_id}`;
     const res = await fetch(url);
     const data = await res.json();
     displayStoryDetails(data.data);
-    // displayStoryDetails(data.data);
 }
 
+// displaying stories in modals
 const displayStoryDetails = story => {
     const modalTitle = document.getElementById('NewsModalLabel');
     modalTitle.innerText = story[0].title;
@@ -154,7 +155,7 @@ const displayStoryDetails = story => {
     <p>${story[0].author.name ? story[0].author.name : 'No author name found'} <br>
     ${story[0].author.published_date ? story[0].author.published_date : 'No publication date author name found'} </p>
     <img src="${story[0].thumbnail_url}" class="img-fluid rounded-start"} img>
-    <p>Total View: ${story[0].total_view} <br> Rating:${story[0].rating.number} </p>
+    <p>Total View: ${story[0].total_view} <br> Rating: ${story[0].rating.number} </p>
 
     <p>News Details: <br> ${story[0].details ? story[0].details : 'Photo news'}</p>
     `
