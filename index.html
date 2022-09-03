@@ -60,6 +60,12 @@
             <div id="news-container" class="card mt-3 mb-3">
 
             </div>
+            <div id="no-found-message" class="mt-4 d-none">
+                <h3 class="text-warning">No News Found. </h3>
+            </div>
+            <div id="show-all" class="text-center d-none">
+                <div id="btn-show-all" class="btn btn-primary">Show All</div>
+            </div>
         </section>
         <section>
             <!-- Modal -->
@@ -67,11 +73,11 @@
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="NewsModalLabel">Modal title</h5>
+                            <h5 class="modal-title" id="NewsModalLabel"></h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div id="story-details" class="modal-body">
-                            ...
+
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -81,9 +87,7 @@
             </div>
 
 
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#NewsModal">
-                Launch demo modal
-            </button>
+            <!-- modal -->
             <div class="modal fade" id="NewsModal" tabindex="-1" aria-labelledby="NewsModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
