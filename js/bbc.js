@@ -11,6 +11,8 @@ const displayStories = (stories) => {
     const storiesContainer = document.getElementById('news-container');
     storiesContainer.innerText = '';
     stories.forEach(story => {
+        toggleSpinner(true);
+
         const storiesDiv = document.createElement('div');
         storiesDiv.classList.add('card');
         storiesDiv.innerHTML = `
@@ -51,6 +53,17 @@ const displayStories = (stories) => {
             `
         storiesContainer.appendChild(storiesDiv);
     })
+    toggleSpinner(false);
+}
+
+const toggleSpinner = isLoading => {
+    const loaderSection = document.getElementById('loader');
+    if (isLoading) {
+        loaderSection.classList.remove('d-none')
+    }
+    else {
+        loaderSection.classList.add('d-none')
+    }
 }
 
 // loading categories
@@ -59,6 +72,7 @@ const loadCategories = async () => {
     const res = await fetch(url)
     const data = await res.json()
     displayCategories(data.data.news_category);
+
 }
 
 // displaying categories
@@ -136,6 +150,7 @@ const displayCategoryWiseStoryDetails = async (storyCategories) => {
             `
         storiesContainer.appendChild(storieCategoriesDiv);
     }
+    toggleSpinner(false)
 }
 
 // loading story details
@@ -162,3 +177,5 @@ const displayStoryDetails = story => {
 }
 
 loadCategories()
+
+

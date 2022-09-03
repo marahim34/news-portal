@@ -54,6 +54,38 @@
 
             </div>
         </nav>
+        <div>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                <div class="container-fluid  d-flex justify-content-between ">
+                    <a class="navbar-brand" href="#">Sort by View</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse  d-flex justify-content-between " id="navbarNavDarkDropdown">
+                        <ul class="navbar-nav">
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                    Default
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu-dark">
+                                    <li><a class="dropdown-item" href="#">Latest</a></li>
+                                    <li><a class="dropdown-item" href="#">A-Z</a></li>
+                                    <li><a class="dropdown-item" href="#">Z-A</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                        <div>
+                            <button id="pick" type="button" class="btn btn-light">Today's Pick</button>
+                            <button id="trending" type="button" class="btn btn-dark">Trending</button>
+                        </div>
+                    </div>
+
+                </div>
+            </nav>
+        </div>
     </header>
     <main class="container">
         <section>
@@ -71,8 +103,14 @@
             <div id="show-all" class="text-center d-none">
                 <div id="btn-show-all" class="btn btn-primary">Show All</div>
             </div>
-        </section>
-        <section>
+            <!-- loader -->
+            <section class="d-none" id="loader">
+                <div style="height: 200px;" class="d-flex justify-content-center align-items-center">
+                    <div class="spinner-border bg-bbc" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                    </div>
+                </div>
+            </section>
             <!-- Modal -->
             <div class="modal fade" id="NewsModal" tabindex="-1" aria-labelledby="NewsModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
@@ -90,27 +128,6 @@
                     </div>
                 </div>
             </div>
-
-
-            <!-- modal -->
-            <div class="modal fade" id="NewsModal" tabindex="-1" aria-labelledby="NewsModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="NewsModalLabel">Modal title</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div id="story-details" class="modal-body">
-
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
     </main>
 
 
