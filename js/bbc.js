@@ -158,23 +158,6 @@ const displayStoryDetails = story => {
 
     <p>News Details: <br> ${story[0].details ? story[0].details : 'Photo news'}</p>
     `
-    // ? er porer ongso turnary operation
 }
 
-// const showModal = (description, image) => {
-//     // console.log(description, image)
-//     const modalBody = document.getElementById("modal-body");
-//     modalBody.textContent = "";
-//     modalBody.innerHTML = `
-//             < p class="py-4" >
-//                 ${description}
-//     </p >
-//     <img src="${image}" />
-// `
-// }
-
-// const displayCategoryWiseDetails = () => {
-//     // console.log(category_id);
-// }
 loadCategories()
-
