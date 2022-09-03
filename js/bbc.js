@@ -1,26 +1,3 @@
-const loadCategories = async () => {
-    const url = `https://openapi.programming-hero.com/api/news/categories`
-    const res = await fetch(url)
-    const data = await res.json()
-    displayCategories(data.data.news_category);
-}
-
-const displayCategories = categories => {
-    const newsCategories = document.getElementById('categories-container');
-    categories.forEach(category => {
-        const categriesDiv = document.createElement('div');
-        categriesDiv.classList.add('navbar-collapse');
-        categriesDiv.innerHTML = `
-        <ul class="navbar-nav">
-                        <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="#">${category.category_name}</a>
-                        </li>
-                    </ul>
-        `
-        newsCategories.appendChild(categriesDiv);
-    })
-}
-
 const loadStories = async () => {
     const url = `https://openapi.programming-hero.com/api/news/category/01`
     const res = await fetch(url);
@@ -62,7 +39,7 @@ const displayStories = stories => {
                         ${story.rating.number} </p>
                     </div>
                     <div>
-                        <img src="images/arrow.jpg" alt="" width="60">
+                        <button onclick="displayStoryDetail('${story._id}')" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#NewsModal">Read More...</button>
                     </div>
             </div>
         </div>
@@ -71,6 +48,45 @@ const displayStories = stories => {
     })
 }
 
+const loadCategories = async () => {
+    const url = `https://openapi.programming-hero.com/api/news/categories`
+    const res = await fetch(url)
+    const data = await res.json()
+    displayCategories(data.data.news_category);
+}
+
+const displayCategories = categories => {
+    const newsCategories = document.getElementById('categories-container');
+    categories.forEach(category => {
+        const categriesDiv = document.createElement('div');
+        categriesDiv.classList.add('navbar-collapse');
+        categriesDiv.innerHTML = `
+        <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="#">${category.category_name}</a>
+                        </li>
+                    </ul>
+        `
+        newsCategories.appendChild(categriesDiv);
+    })
+}
+
+const loadStoriesDetail = async (news_id) => {
+    const url = `https://openapi.programming-hero.com/api/news/${news_id}`
+    const res = await fetch(url);
+    const data = await res.json();
+    displayStoryDetail(data);
+}
+
+const displayStoryDetail = story => {
+    const modalTitle = document.getElementById('NewsModalLabel');
+    modalTitle.innerText = story._id;
+    const storyDetails = document.getElementById('story-details');
+    storyDetails.innerHTML = `
+    <p>${story.title} </p>
+    <p>Author: ${story.author.name ? story.author.name : 'No Author Name found'} </p>
+    <p>News: ${story.details} </p>`
+}
 
 
 
