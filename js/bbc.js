@@ -1,82 +1,15 @@
-// Loading all stories
-const loadStories = async (category_id) => {
-    const url = `https://openapi.programming-hero.com/api/news/category/${"0" + category_id}`
-    const res = await fetch(url);
-    const data = await res.json();
-    displayStories(data.data);
-}
-
-// displaying stories
-const displayStories = (stories) => {
-    const storiesContainer = document.getElementById('news-container');
-    storiesContainer.innerText = '';
-    stories.forEach(story => {
-        toggleSpinner(true);
-
-        const storiesDiv = document.createElement('div');
-        storiesDiv.classList.add('card');
-        storiesDiv.innerHTML = `
-            <div class="row g-3" style="max-width: 1200px;">
-                <div class="col-md-4 d-flex align-items-center">
-                    <img src="${story.thumbnail_url}" class="img-fluid rounded-start" alt="...">
-                </div>
-                <div class="col-md-8">
-                    <div class="card-body">
-                        <h5 class="card-title">${story.title}</h5>
-                        <p class="card-text">${story.details.slice(0, 300)}.....</p>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div class="d-flex">
-                            <div>
-                                <img src="${story.author.img}" class="img-fluid rounded rounded-circle" alt="..." width="60">
-                            </div>
-                            <div class="p-0 m-0 g-0">
-                                <p class="ps-3"><small>${story.author.name ? story.author.name : 'No author name found'} <br>
-                                        ${story.author.published_date ? story.author.published_date : 'No publication date found'}</small></p>
-                            </div>
-                        </div>
-                        <div class="d-flex align-items-center justify-content-center">
-                            <img src="images/eye.png" alt="" width="50">
-                            <p class="ps-3">${story.total_view}</p>
-                        </div>
-                        <div>
-                            <p>Rating:
-                                ${story.rating.number} </p>
-                                
-                        </div>
-                        <div>
-                            <button onclick="loadStoryDetails('${story._id}')" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#NewsModal">Read More...</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            `
-        storiesContainer.appendChild(storiesDiv);
-    })
-    toggleSpinner(false);
-}
-
-const toggleSpinner = isLoading => {
-    const loaderSection = document.getElementById('loader');
-    if (isLoading) {
-        loaderSection.classList.remove('d-none')
-    }
-    else {
-        loaderSection.classList.add('d-none')
-    }
-}
-
 // loading categories
 const loadCategories = async () => {
     const url = `https://openapi.programming-hero.com/api/news/categories`
+    toggleSpinner(true)
     const res = await fetch(url)
     const data = await res.json()
     displayCategories(data.data.news_category);
-
+    toggleSpinner(false)
 }
-
 // displaying categories
 const displayCategories = categories => {
+    toggleSpinner(true)
     const newsCategories = document.getElementById('categories-container');
     categories.forEach(category => {
         const categriesDiv = document.createElement('div');
@@ -89,24 +22,41 @@ const displayCategories = categories => {
                     </ul>
         `
         newsCategories.appendChild(categriesDiv);
-        const categoryText = document.getElementById('category-text')
-        const categoryDisplay = categoryText.innerText;
-        return categoryDisplay;
     })
+    toggleSpinner(false)
+}
+
+// Toggle Spinner
+const toggleSpinner = isLoading => {
+    const loaderSection = document.getElementById('loader');
+    if (isLoading) {
+        loaderSection.classList.remove('d-none')
+    }
+    else {
+        loaderSection.classList.add('d-none')
+    }
 }
 
 // loading categorywise details
 const loadCategoryWiseStoryDetails = (category_id) => {
     const url = `https://openapi.programming-hero.com/api/news/category/${"0" + category_id}`
-    // console.log(url);
-    loadStories(category_id)
+    toggleSpinner(true)
+    loadStories(category_id);
     fetch(url)
         .then(res => res.json())
         .then(data => displayCategoryWiseStoryDetails(data.data))
 }
 
+function getTextElementValueById(elementID) {
+    const element = document.getElementById(elementID);
+    const elementValueString = element.innerText;
+    const value = parseInt(elementValueString);
+    return value;
+}
+
 // displaying categorywise details
 const displayCategoryWiseStoryDetails = async (storyCategories) => {
+    const categoriesLength = storyCategories.length;
     const storiesContainer = document.getElementById('categorywiseStories');
     storiesContainer.innerText = '';
     for (const storyCategory of storyCategories) {
@@ -153,9 +103,74 @@ const displayCategoryWiseStoryDetails = async (storyCategories) => {
     toggleSpinner(false)
 }
 
+// Loading all stories
+const loadStories = async (category_id) => {
+    const url = `https://openapi.programming-hero.com/api/news/category/${"0" + category_id}`
+    try {
+        const res = await fetch(url);
+        const data = await res.json();
+        displayStories(data.data);
+    }
+    catch (error) {
+        console.log(error);
+    }
+}
+
+// displaying stories
+const displayStories = (stories) => {
+    stories.sort((a, b) => {
+        return b.total_view - a.total_view;
+    })
+    const storiesContainer = document.getElementById('news-container');
+    storiesContainer.innerText = '';
+    stories.forEach(story => {
+        const storiesDiv = document.createElement('div');
+        storiesDiv.classList.add('card');
+        storiesDiv.innerHTML = `
+            <div class="row g-3" style="max-width: 1200px;">
+                <div class="col-md-4 d-flex align-items-center">
+                    <img src="${story.thumbnail_url}" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">${story.title}</h5>
+                        <p class="card-text">${story.details.slice(0, 300)}.....</p>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div class="d-flex">
+                            <div>
+                                <img src="${story.author.img}" class="img-fluid rounded rounded-circle" alt="..." width="60">
+                            </div>
+                            <div class="p-0 m-0 g-0">
+                                <p class="ps-3"><small>${story.author.name ? story.author.name : 'No author name found'} <br>
+                                        ${story.author.published_date ? story.author.published_date : 'No publication date found'}</small></p>
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center">
+                            <img src="images/eye.png" alt="" width="50">
+                            <p class="ps-3">${story.total_view ? story.total_view : 'Just Posted'}</p>
+                        </div>
+                        <div>
+                            <p>Rating:
+                                ${story.rating.number} </p>                                
+                        </div>
+                        <div>
+                            <button onclick="loadStoryDetails('${story._id}')" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#NewsModal">Read More...</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `
+        storiesContainer.appendChild(storiesDiv);
+    })
+    toggleSpinner(false);
+}
+
+
 // loading story details
 const loadStoryDetails = async (news_id) => {
     const url = `https://openapi.programming-hero.com/api/news/${news_id}`;
+    toggleSpinner(true)
     const res = await fetch(url);
     const data = await res.json();
     displayStoryDetails(data.data);
@@ -174,8 +189,7 @@ const displayStoryDetails = story => {
 
     <p>News Details: <br> ${story[0].details ? story[0].details : 'Photo news'}</p>
     `
+    toggleSpinner(false)
 }
 
 loadCategories()
-
-
