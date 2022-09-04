@@ -47,16 +47,8 @@ const loadCategoryWiseStoryDetails = (category_id) => {
         .then(data => displayCategoryWiseStoryDetails(data.data))
 }
 
-function getTextElementValueById(elementID) {
-    const element = document.getElementById(elementID);
-    const elementValueString = element.innerText;
-    const value = parseInt(elementValueString);
-    return value;
-}
-
 // displaying categorywise details
 const displayCategoryWiseStoryDetails = async (storyCategories) => {
-    const categoriesLength = storyCategories.length;
     const storiesContainer = document.getElementById('categorywiseStories');
     storiesContainer.innerText = '';
     for (const storyCategory of storyCategories) {
